@@ -4,7 +4,7 @@ const spiData = '/api/spi';
 const fireData = "/api/texas_fires";
 // const fbyData = '/api/acres_year'; // wrong api
 const fbyData = '/api/years';
-const causeList = 'api/causes'
+const causeList = 'api/causes';
 
 let fby = [];
 let yearList = [];
@@ -143,10 +143,10 @@ function optionChanged(sel) {
     });
 
 }
-// optionChanged takes and arg so you have to pass one
-optionChanged(1992);
+
 
 // plot drought and moisture data from The Living Blended Drought Product (LBDP)
+function buildPaleo() {
 d3.json(paleoData).then(data => {
     console.log('paleo', data);
     let newData = [];
@@ -259,126 +259,137 @@ d3.json(paleoData).then(data => {
           responsive: true,
         }
     };
-    let myChart0 = new Chart(
-          document.getElementById('myChart0'),
+    // used to be mychart0 which doesnt't exist
+    let myChart2 = new Chart(
+          document.getElementById('myChart2'),
           config0
     );
 });
+}
 
 // plot drought and moisture data from The Standardized Precipitation Index (SPI)
-d3.json(spiData).then(data => {
-    // console.log(data);
-    let newData = [];
-    let labels = [];
-    let d0 = [];
-    let d1 = [];
-    let d2 = [];
-    let d3 = [];
-    let d4 = [];
-    let w0 = [];
-    let w1 = [];
-    let w2 = [];
-    let w3 = [];
-    let w4 = [];
-    for (let a=0;a<data.length;a++) {
-        curData = data[a];
-        newData.push(curData);
-        labels.push(curData['DATE']);
-        d0.push(curData['D0']);
-        d1.push(curData['D1']);
-        d2.push(curData['D2']);
-        d3.push(curData['D3']);
-        d4.push(curData['D4']);
-        w0.push(-curData['W0']);
-        w1.push(-curData['W1']);
-        w2.push(-curData['W2']);
-        w3.push(-curData['W3']);
-        w4.push(-curData['W4']);
-    }
-    console.log('spiData d0', d0);
-
-    const mapData = {
-        labels: labels,
-        datasets: [
-    {
-          label: 'Abnormally Dry',
-          backgroundColor: 'rgb(253, 255, 0)',
-          data: d0,
-    },
-    {
-        label: 'Moderate Drought',
-        backgroundColor: 'rgb(255, 204, 153)',
-        data: d1,
-    },
-    {
-        label: 'Severe Drought',
-        backgroundColor: 'rgb(255, 102, 0)',
-        data: d2,
-    },
-    {
-        label: 'Extreme Drought',
-        backgroundColor: 'rgb(255, 0, 0)',
-        data: d3,
-    },
-    {
-        label: 'Exceptional Drought',
-        backgroundColor: 'rgb(102, 0, 0)',
-        data: d4,
-    },
-    {
-          label: 'Abnormally Wet',
-          backgroundColor: 'rgb(170, 255, 85)',
-          data: w0,
-    },
-    {
-        label: 'Moderate Wet',
-        backgroundColor: 'rgb(1, 255, 255)',
-        data: w1,
-    },
-    {
-        label: 'Severe Wet',
-        backgroundColor: 'rgb(0, 170, 255)',
-        data: w2,
-    },
-    {
-        label: 'Extreme Wet',
-        backgroundColor: 'rgb(0, 0, 255)',
-        data: w3,
-    },
-    {
-        label: 'Exceptional Wet',
-        backgroundColor: 'rgb(0, 0, 170)',
-        data: w4,
-    },
-    // {
-    //     type: 'line',
-    //     label: 'Fires per Year',
-    //     backgroundColor: 'rgba(75, 192, 192, 0.5)',
-    //     fill: true,
-    //     borderColor: 'rgb(75, 192, 192)',
-    //     tension: 0.1,
-    //     data: fby
-    // }
-    ]
-    };
-    const config = {
-        type: 'bar',
-        data: mapData,
-        options: {
-          plugins: {
-            title: {
-              display: true,
-              text: 'Drought in Texas from 1992-2015'
-            },
-            legend: {
-                position:'right'
-            },
-          },
-          responsive: true,
+function buildSPI() {
+    d3.json(spiData).then(data => {
+        // console.log(data);
+        let newData = [];
+        let labels = [];
+        let d0 = [];
+        let d1 = [];
+        let d2 = [];
+        let d3 = [];
+        let d4 = [];
+        let w0 = [];
+        let w1 = [];
+        let w2 = [];
+        let w3 = [];
+        let w4 = [];
+        for (let a=0;a<data.length;a++) {
+            curData = data[a];
+            newData.push(curData);
+            labels.push(curData['DATE']);
+            d0.push(curData['D0']);
+            d1.push(curData['D1']);
+            d2.push(curData['D2']);
+            d3.push(curData['D3']);
+            d4.push(curData['D4']);
+            w0.push(-curData['W0']);
+            w1.push(-curData['W1']);
+            w2.push(-curData['W2']);
+            w3.push(-curData['W3']);
+            w4.push(-curData['W4']);
         }
-    };
-    let myChart = new Chart(
-          document.getElementById('myChart'),
-          config
-    );
-});
+        console.log('spiData d0', d0);
+
+        const mapData = {
+            labels: labels,
+            datasets: [
+        {
+            label: 'Abnormally Dry',
+            backgroundColor: 'rgb(253, 255, 0)',
+            data: d0,
+        },
+        {
+            label: 'Moderate Drought',
+            backgroundColor: 'rgb(255, 204, 153)',
+            data: d1,
+        },
+        {
+            label: 'Severe Drought',
+            backgroundColor: 'rgb(255, 102, 0)',
+            data: d2,
+        },
+        {
+            label: 'Extreme Drought',
+            backgroundColor: 'rgb(255, 0, 0)',
+            data: d3,
+        },
+        {
+            label: 'Exceptional Drought',
+            backgroundColor: 'rgb(102, 0, 0)',
+            data: d4,
+        },
+        {
+            label: 'Abnormally Wet',
+            backgroundColor: 'rgb(170, 255, 85)',
+            data: w0,
+        },
+        {
+            label: 'Moderate Wet',
+            backgroundColor: 'rgb(1, 255, 255)',
+            data: w1,
+        },
+        {
+            label: 'Severe Wet',
+            backgroundColor: 'rgb(0, 170, 255)',
+            data: w2,
+        },
+        {
+            label: 'Extreme Wet',
+            backgroundColor: 'rgb(0, 0, 255)',
+            data: w3,
+        },
+        {
+            label: 'Exceptional Wet',
+            backgroundColor: 'rgb(0, 0, 170)',
+            data: w4,
+        },
+        // {
+        //     type: 'line',
+        //     label: 'Fires per Year',
+        //     backgroundColor: 'rgba(75, 192, 192, 0.5)',
+        //     fill: true,
+        //     borderColor: 'rgb(75, 192, 192)',
+        //     tension: 0.1,
+        //     data: fby
+        // }
+        ]
+        };
+        const config = {
+            type: 'bar',
+            data: mapData,
+            options: {
+            plugins: {
+                title: {
+                display: true,
+                text: 'Drought in Texas from 1992-2015'
+                },
+                legend: {
+                    position:'right'
+                },
+            },
+            responsive: true,
+            }
+        };
+
+        // you had mychart here so reused mychart so you lost a visualization
+        let myChart3 = new Chart(
+            document.getElementById('myChart3'),
+            config
+        );
+    });
+}
+
+//  display initial charts
+optionChanged(1992);
+buildPaleo();
+buildSPI()

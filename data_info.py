@@ -3,7 +3,7 @@ import os
 import pandas as pd
 
 connect_string = os.getenv('DATABASE_URL2', '')
-print("conn string", connect_string)
+# print("conn string", connect_string)
 engine = create_engine(connect_string)
 
 def get_spi():
@@ -157,5 +157,5 @@ order by 1
     return cause_list
 
 if __name__ == '__main__':
-    info = get_selected_texas_fires(2008)
+    info = get_spi()
     print(info[0])
