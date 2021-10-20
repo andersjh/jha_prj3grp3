@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Basic Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap1.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">Select Year</a>
+                    <div class="dropdown-menu">
+                        <select id="selFireYear" onchange="optionChanged(this.value)">
+                            <option>2005</option>
+                            <option>2006 </option>
+                            <option>2007</option>
+                            <option>2008 </option>
+                            <option>2009</option>
+                            <option>2010</option>
+                            <option>2011</option>
+                            <option>2012</option>
+                            <option>2013</option>
+                            <option>2014</option>
+                            <option>2015</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">Select Cause</a>
+                    <div class="dropdown-menu">
+                        <select id="selFireCause" onchange="optionChanged(this.value)">
+                            <option>Arson</option>
+                            <option>Campfire</option>
+                            <option>Smoking</option>
+                            <option>Lightning</option>
+                            <option>Equipment Use</option>
+                            <option>Children</option>
+                            <option>Railroad</option>
+                            <option>Fireworks</option>
+                            <option>Powerline</option>
+                            <option>Debris Burning</option>
+                            <option>Miscellaneous</option>
+                            <option>Missing/Undefined</option>
+                            <option>Structure</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<body>
+    <div class="container">
+        <div class="col-lg-8">
+            <div class="mapContainer" style="height: 550px;width: 600px;">
+                <div id="map" class="currentMap">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+                <div class="column" style="background-color:#1e1f20">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="column" style="background-color:#1e1f20">
+                    <canvas id="myChart2"></canvas>
+                </div>
+                <div class="column" style="background-color:#1e1f20">
+                    <canvas id="myChart3"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static//js/logic.js"></script>
+</body>
+
+</html>

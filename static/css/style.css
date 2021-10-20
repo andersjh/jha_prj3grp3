@@ -1,0 +1,68 @@
+/* Remove the default margin and padding from the body.
+body {
+    padding: 0;
+    margin: 0;
+  } */
+  
+  /* Set map, body, and html to 100% of the screen size. */
+  #map,
+  body,
+  html {
+    height: 100%;
+  }
+
+/* Styling for the legend */
+.legend {
+    color: #555;
+    padding: 6px 8px;
+    font: 12px Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    margin-bottom: inherit;
+  }
+  .legend ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    clear: both;
+    /* display: table; */
+  }
+  .legend li div {
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+  }
+  .legend li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.25em;
+  
+  }
+  .legend p {
+    text-align: center;
+    margin-bottom: inherit;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Create three equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+ 
+  
